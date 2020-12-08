@@ -28,12 +28,6 @@ public class Parse {
             @Override
             public void run() {
                 parsePos(link);
-                for( String el : Busses ){
-                    System.out.println( el );
-                }
-                for( String el : timeofBusses ){
-                    System.out.println( el );
-                }
             }
         };
         thread = new Thread(runnable);
@@ -55,7 +49,6 @@ public class Parse {
             document = Jsoup.connect(link)
                     .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.185 YaBrowser/20.11.2.78 Yowser/2.5 Safari/537.36")
                     .get();
-            Log.d("PARSEDG", "From Class: " + document.toString());
             element = document.getElementsByClass("link-wrapper").first();
             //Log.d(TAG, "Text: " + element.text());
             urltoStop = "https://yandex.ru" + element.attr("href");
@@ -65,11 +58,9 @@ public class Parse {
             for( Element el : elementsBusses ){
                 Busses.add( el.text() );
             }
-            Log.d(TAG, "From Class: " + Busses.toString());
             for( Element el : time ){
                 timeofBusses.add(el.text());
             }
-            Log.d(TAG, "From Class: " + timeofBusses.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
